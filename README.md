@@ -1,16 +1,53 @@
-## Hi there 👋
+# 吴胜男（Wu Shengnan）
 
-<!--
-**shiyuan170146-bit/shiyuan170146-bit** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+华中农业大学 2024 级信息管理与信息系统专业本科生。
 
-Here are some ideas to get you started:
+我的强项不是手写代码，是把模糊的需求拆成能跑起来的系统：定边界、定数据模型、定验收标准，再用 AI 辅助实现，逐段审查、调试到能上线。
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+下面两个项目都是我自己每天在用、也确实解决了我自己问题的东西。
+
+## 项目
+
+### 学涯拼图 · 培养方案与选课提醒
+
+[仓库](https://github.com/shiyuan170146-bit/xueya-pintu) · [在线演示](http://42.194.145.229/?demo=1)
+
+面向信管专业本科生的学业导航系统。导入教务系统导出的成绩单，自动对照培养方案算出学分完成度、模块缺口和本学期选课建议。
+
+演示入口不用注册，直接进一名信管专业学生的四年成绩样例，看到的是完整界面而不是空壳。
+
+原生 HTML/CSS/JS 前端，Node.js 零框架后端，MySQL 8（9 表、3 视图、2 触发器、3 函数、9 存储过程）。三个值得说的地方：行级权限把用户身份写进 MySQL 会话变量、由存储过程校验归属，SQL 语句里不出现用户 ID，“漏拼用户条件”在结构上就不可能发生；成绩单解析同时支持教务系统导出的 PDF 和 Excel；无绩点隐私模式下成绩不存分数、不计绩点，后台也查不到。
+
+### 卷卷羊 · 数独学园
+
+[仓库](https://github.com/shiyuan170146-bit/juanjuanyang-sudoku) · [在线体验](https://shiyuan170146-bit.github.io/juanjuanyang-sudoku/)
+
+一个会讲思路的数独游戏。卡住时不直接给答案，而是在盘面上标出结论格和依据格，说明这一步为什么成立。
+
+零依赖、零后端、零框架，纯前端。内置 L1 到 L8 八级解题技巧引擎。难度不用“提示数多少”定，改用“解完这题最少要用到第几级技巧”，300 道随机题实测覆盖率 100%。为兼容小工具容器里的旧 WebView 做了 Chrome 61 基线适配，51 处 `color-mix()` 在构建期算成静态 `rgba()`，运行时零开销。音效全部用 WebAudio 现场合成，没有音频文件。题库 256 题、6 档难度，构建期校验过唯一解。
+
+## 我怎么做事
+
+代码主要由 AI 辅助生成。我负责的是需求边界、技术选型、数据模型、验收标准和调试定位。
+
+举两个具体的判断：
+
+**难度该怎么定。** 直观想法是按提示数分档，但实测提示数和解题难度只有弱相关（皮尔逊 −0.393，解释力约 15%），不可用。改成“解完这题最少要用到第几级技巧”，从 L1 起逐级尝试，才得到一个能对外承诺的指标。
+
+**权限该放在哪。** 行级权限有两条路：在每条 SQL 里拼 `userId`，或者把身份放进会话变量让存储过程自己取。前者每加一个接口就多一次出错机会，后者只有一处会错。选了后者。
+
+这两个仓库的 README 记录了完整的技术取舍，包括踩过的坑和为什么最后这么选。
+
+## 技能
+
+**能独立搭建**：HTML / CSS / JavaScript、Node.js、MySQL、Git、Linux 服务器部署
+
+**用过**：Python、Excel 数据分析、Microsoft Project 项目管理
+
+## 联系
+
+邮箱：3351198592@qq.com
+
+---
+
+<sub>这两个项目的代码在 AI 辅助下完成，架构与验收由我负责。README 里写清了每一处取舍的原因，欢迎指出问题。</sub>
